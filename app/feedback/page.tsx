@@ -512,14 +512,18 @@ export default function FeedbackPage() {
     const [showServicePopup, setShowServicePopup] = useState(false);
     const [selectedServiceId, setSelectedServiceId] = useState<number>();
 
+
     /* Load Windows */
-    const {data: windowsData, isLoading: windowsLoading} = useWindows();
-    const windows = Array.isArray(windowsData) ? windowsData : windowsData?.data ?? [];
+    const {
+        data: windows = [],
+        isLoading: windowsLoading,
+    } = useWindows();
 
     /* Load Services */
-    const {data: servicesData, isLoading: servicesLoading} =
-        useWindowServices(windowId);
-    const services = Array.isArray(servicesData) ? servicesData : servicesData?.data ?? [];
+    const {
+        data: services = [],
+        isLoading: servicesLoading,
+    } = useWindowServices(windowId);
 
     /* Handle Window Click */
     const handleWindowClick = (window: any) => {
